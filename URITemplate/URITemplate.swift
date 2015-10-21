@@ -259,8 +259,7 @@ extension NSRegularExpression {
 
 extension String {
   func percentEncoded() -> String {
-    let allowedCharacters = NSCharacterSet(charactersInString: ":/?&=;+!@#$()',*").invertedSet
-    return stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)!
+    return CFURLCreateStringByAddingPercentEscapes(nil, self, nil, ":/?&=;+!@#$()',*", CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding)) as String
   }
 }
 
