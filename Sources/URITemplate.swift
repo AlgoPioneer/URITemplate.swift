@@ -87,7 +87,7 @@ public struct URITemplate : CustomStringConvertible, Equatable, Hashable, String
 
       return expression.componentsSeparatedByString(",").map { component in
         if component.hasSuffix("*") {
-          return component.substringToIndex(component.endIndex.predecessor())
+          return component.substringToIndex(expression.endIndex.predecessor())
         } else {
           return component
         }
@@ -259,7 +259,7 @@ extension NSRegularExpression {
 
 extension String {
   func percentEncoded() -> String {
-    let allowedCharacters = NSCharacterSet(charactersInString: ":/?&=;+!@#$()',*").invertedSet
+    let allowedCharacters = NSCharacterSet(charactersInString: ":/?&=;+!@#$()',* ").invertedSet
     return stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)!
   }
 }
